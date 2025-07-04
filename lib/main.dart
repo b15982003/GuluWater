@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'feature/home/home_page.dart';
+import 'feature/home/MainApp.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const HomePage(title: 'Gulu Water'),
+      home: const MainApp(title: 'Gulu Water'),
     );
   }
 }
