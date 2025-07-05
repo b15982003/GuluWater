@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'feature/home/MainApp.dart';
+import 'core/routes/routes.dart';
+import 'core/theme/GuColors.dart';
+import 'di/SetupDbHelper.dart';
+import 'feature/MainApp.dart';
+import 'feature/add_record/AddRecordPage.dart';
 
-void main() {
+Future<void> main() async {
+  await setupDbHelper();
   runApp(const MyApp());
 }
 
@@ -14,9 +19,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: GuDirect.waterBlue),
       ),
-      home: const MainApp(title: 'Gulu Water'),
+      initialRoute: '/',
+      routes: {
+        '/':(context) => MainApp(title: 'Gulu Water'),
+        '/${GuRoutes.ADD_RECORD_PAGE}':(context) => AddRecordPage(),
+      },
     );
   }
 }

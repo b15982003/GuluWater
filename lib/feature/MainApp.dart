@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gulu_water/feature/home/widget/bottom_navigate.dart';
-import 'package:gulu_water/feature/home/widget/history_page.dart';
-import 'package:gulu_water/feature/home/widget/home_page.dart';
-import 'package:gulu_water/feature/home/widget/setting_page.dart';
+import 'package:gulu_water/feature/widget/BottomNavigate.dart';
+import 'package:gulu_water/feature/history/HistoryPage.dart';
+import 'package:gulu_water/feature/home/HomePage.dart';
+import 'package:gulu_water/feature/setting/SettingPage.dart';
+
+import '../core/routes/routes.dart';
 
 class MainApp extends StatefulWidget {
   const MainApp({super.key, required this.title});
@@ -36,7 +38,8 @@ class _MainAppState extends State<MainApp> {
         onTap: _onNavBottomTap,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {},
+        shape: const CircleBorder(),
+        onPressed: () => _navigateAddRecordPage(context),
         tooltip: 'Add Record',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
@@ -54,5 +57,9 @@ class _MainAppState extends State<MainApp> {
       default:
         return const HomePage();
     }
+  }
+
+  void _navigateAddRecordPage(BuildContext context) {
+    Navigator.pushNamed(context, '/${GuRoutes.ADD_RECORD_PAGE}');
   }
 }
