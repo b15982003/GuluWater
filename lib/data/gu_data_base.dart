@@ -1,5 +1,5 @@
-import 'package:gulu_water/data/WaterDbHelper.dart';
-import 'package:gulu_water/model/WaterRecord.dart';
+import 'package:gulu_water/data/water_db_helper.dart';
+import 'package:gulu_water/model/water_record.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

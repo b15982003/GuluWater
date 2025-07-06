@@ -1,14 +1,12 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get_it/get_it.dart';
-import 'package:gulu_water/core/provider/WaterDataProvider.dart';
-import 'package:gulu_water/data/WaterDbHelper.dart';
-import 'package:gulu_water/model/WaterRecord.dart';
-import '../../core/provider/WaterDataProvider.dart';
+import 'package:gulu_water/core/provider/water_data_provider.dart';
+import 'package:gulu_water/feature/home/provider/today_water_record_provider.dart';
+import 'package:gulu_water/feature/home/provider/week_water_record_provider.dart';
+import 'package:gulu_water/model/water_record.dart';
 
-import '../../core/theme/GuDirect.dart';
+import '../../core/theme/gu_direct.dart';
 
 class AddRecordPage extends ConsumerStatefulWidget {
   const AddRecordPage({super.key});
@@ -19,6 +17,8 @@ class AddRecordPage extends ConsumerStatefulWidget {
 
 class _AddRecordState extends ConsumerState<AddRecordPage> {
   late WaterDataProvider _waterDataProvider;
+  late ToDayWaterDataProvider _toDayWaterDataProvider;
+  late WeekWaterDataProvider _weekWaterDataProvider;
   var dateTimeNow = DateTime.now();
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _timeController = TextEditingController();
@@ -47,6 +47,8 @@ class _AddRecordState extends ConsumerState<AddRecordPage> {
   @override
   Widget build(BuildContext context) {
     _waterDataProvider = ref.watch(waterDataProvider.notifier);
+    _toDayWaterDataProvider = ref.watch(toDayWaterRecordProvider.notifier);
+    _weekWaterDataProvider = ref.watch(weekWaterRecordProvider.notifier);
 
     var appBar = AppBar(title: const Text('新增數據'));
 
@@ -246,6 +248,8 @@ class _AddRecordState extends ConsumerState<AddRecordPage> {
       note: _remarkController.text,
     );
     _waterDataProvider.addWaterRecord(waterRecord);
+    _toDayWaterDataProvider.updateWaterRecord();
+    _weekWaterDataProvider.updateWeekWaterRecord();
     Navigator.pop(context);
   }
 
@@ -258,7 +262,7 @@ class _AddRecordState extends ConsumerState<AddRecordPage> {
       lastDate: DateTime(2101),
     );
     if (picked != null) {
-      _dateController.text = '${picked.year}/${picked.month}/${picked.day}';
+      _dateController.text = '${picked.year}-${picked.month}-${picked.day}';
     } else {
       _dateController.text = oldValue;
     }

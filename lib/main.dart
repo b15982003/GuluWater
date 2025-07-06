@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/routes/routes.dart';
-import 'core/theme/GuDirect.dart';
-import 'di/SetupDbHelper.dart';
-import 'feature/MainApp.dart';
-import 'feature/add_record/AddRecordPage.dart';
+import 'core/theme/gu_direct.dart';
+import 'di/setup_db_helper.dart';
+import 'feature/main_app.dart';
+import 'feature/add_record/add_record_page.dart';
 
 Future<void> main() async {
   await setupDbHelper();

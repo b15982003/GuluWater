@@ -1,12 +1,11 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gulu_water/feature/history/widget/ItemHistoryTitle.dart';
-import "package:collection/collection.dart";
+import 'package:gulu_water/feature/history/widget/item_history_title.dart';
 
-import '../../core/provider/WaterDataProvider.dart';
-import '../../core/theme/GuDirect.dart';
-import '../../model/WaterRecord.dart';
+import '../../core/provider/water_data_provider.dart';
+import '../../core/theme/gu_direct.dart';
+import '../../model/water_record.dart';
 
 class HistoryPage extends ConsumerStatefulWidget {
   const HistoryPage({super.key});
@@ -30,43 +29,41 @@ class _HistoryPageState extends ConsumerState<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     _waterRecords = ref.watch(waterDataProvider);
-    print('history build');
+
     return Scaffold(body: _buildUI(context));
   }
 
   Widget _buildUI(BuildContext context) {
     return Expanded(
-      child: SingleChildScrollView(
-        child: Container(
-          width: MediaQuery.sizeOf(context).width,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [_allWaterRecordList(context)],
-          ),
-        ),
+      child: Container(
+        width: MediaQuery.sizeOf(context).width,
+        height: MediaQuery.sizeOf(context).height,
+        child: _allWaterRecordList(context),
       ),
     );
   }
 
   Widget _allWaterRecordList(BuildContext context) {
     final newRecordList = recodeGroupBy(_waterRecords);
-    return SizedBox(
-      width: MediaQuery.sizeOf(context).width,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: GuDirect.space8, vertical: GuDirect.space20),
-            child: const Text(
-              '飲水紀錄',
-              style: TextStyle(fontSize: GuDirect.fontSize24),
-            ),
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: GuDirect.space8,
+            vertical: GuDirect.space20,
           ),
-          SizedBox(
-            height: MediaQuery.sizeOf(context).height * 0.6,
+          child: const Text(
+            '飲水紀錄',
+            style: TextStyle(fontSize: GuDirect.fontSize24),
+          ),
+        ),
+        Expanded(
+          child: SafeArea(
             child: ListView.builder(
+              controller: _allWaterRecordListScrollController,
               itemCount: newRecordList.length,
               itemBuilder: (context, index) {
                 final entry = newRecordList.entries.elementAt(index);
@@ -77,8 +74,8 @@ class _HistoryPageState extends ConsumerState<HistoryPage> {
               },
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

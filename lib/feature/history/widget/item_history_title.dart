@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gulu_water/core/theme/GuDirect.dart';
-import 'package:gulu_water/model/WaterRecord.dart';
+import 'package:gulu_water/core/theme/gu_direct.dart';
+import 'package:gulu_water/model/water_record.dart';
 
 class ItemHistoryTitle extends StatelessWidget {
   final String header;

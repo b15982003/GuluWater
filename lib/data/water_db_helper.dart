@@ -1,7 +1,7 @@
-import 'package:gulu_water/data/GuDataBase.dart';
+import 'package:gulu_water/data/gu_data_base.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../model/WaterRecord.dart';
+import '../model/water_record.dart';
 
 class WaterDbHelper {
   WaterDbHelper();
@@ -22,18 +22,19 @@ class WaterDbHelper {
     );
   }
 
-  Future<List<WaterRecord>> queryWaterRecords(String waterTimestamp) async {
+  Future<List<WaterRecord>> queryWaterRecordsByDate(String date) async {
     final db = await database;
     final List<Map<String, dynamic>> maps = await db.query(
       water_table_name,
       columns: [
         WaterRecord.waterType,
         WaterRecord.waterValue,
+        WaterRecord.waterDate,
         WaterRecord.waterTimestamp,
         WaterRecord.waterNote,
       ],
-      where: '${WaterRecord.waterTimestamp} = ?',
-      whereArgs: [waterTimestamp],
+      where: '${WaterRecord.waterDate} = ?',
+      whereArgs: [date],
     );
     return _waterRecordsToList(maps);
   }

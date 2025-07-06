@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gulu_water/feature/widget/BottomNavigate.dart';
-import 'package:gulu_water/feature/history/HistoryPage.dart';
-import 'package:gulu_water/feature/home/HomePage.dart';
-import 'package:gulu_water/feature/setting/SettingPage.dart';
+import 'package:gulu_water/core/theme/gu_direct.dart';
+import 'package:gulu_water/feature/widget/bottom_navigate.dart';
+import 'package:gulu_water/feature/history/history_page.dart';
+import 'package:gulu_water/feature/home/home_page.dart';
+import 'package:gulu_water/feature/setting/setting_page.dart';
 
 import '../core/routes/routes.dart';
 
@@ -29,6 +30,7 @@ class _MainAppState extends State<MainApp> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        actions: [_btnAddRecord()],
         title: Text(widget.title),
       ),
       body: _buildBody(),
@@ -37,12 +39,6 @@ class _MainAppState extends State<MainApp> {
         currentIndex: _bottomSelectedIndex,
         onTap: _onNavBottomTap,
       ),
-      floatingActionButton: FloatingActionButton(
-        shape: const CircleBorder(),
-        onPressed: () => _navigateAddRecordPage(context),
-        tooltip: 'Add Record',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
@@ -57,6 +53,13 @@ class _MainAppState extends State<MainApp> {
       default:
         return const HomePage();
     }
+  }
+
+  Widget _btnAddRecord() {
+    return IconButton(
+      onPressed: () => _navigateAddRecordPage(context),
+      icon: Icon(Icons.add, size: GuDirect.iconSize28,),
+    );
   }
 
   void _navigateAddRecordPage(BuildContext context) {

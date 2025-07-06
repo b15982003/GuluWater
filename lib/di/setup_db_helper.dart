@@ -1,4 +1,4 @@
-import 'package:gulu_water/data/WaterDbHelper.dart';
+import 'package:gulu_water/data/water_db_helper.dart';
 import 'package:get_it/get_it.dart';
 
 
