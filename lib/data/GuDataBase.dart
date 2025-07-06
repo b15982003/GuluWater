@@ -26,7 +26,8 @@ class GuDataBase {
           'CREATE TABLE ${WaterDbHelper.water_table_name}('
           'id INTEGER PRIMARY KEY,'
           ' ${WaterRecord.waterType} TEXT,'
-          ' ${WaterRecord.waterValue} DOUBLE,'
+          ' ${WaterRecord.waterValue} INTEGER,'
+          ' ${WaterRecord.waterDate} TEXT,'
           ' ${WaterRecord.waterTimestamp} TEXT,'
           ' ${WaterRecord.waterNote} TEXT)',
         );

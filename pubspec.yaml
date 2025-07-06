@@ -17,7 +17,6 @@ dependencies:
   get_it: ^7.7.0
   skeletonizer: ^2.1.0
   fluttertoast: ^8.2.1
-
   numberpicker: ^2.1.1
   photo_view: ^0.14.0
   image_picker: ^1.1.2
@@ -26,7 +25,7 @@ dependencies:
   path: ^1.9.1
   path_provider: ^2.1.5
   image: ^4.5.4
-
+  collection: ^1.18.0
   cupertino_icons: ^1.0.8
 
 dev_dependencies:

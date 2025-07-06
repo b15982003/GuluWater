@@ -61,6 +61,7 @@ class WaterDbHelper {
       (index) => WaterRecord(
         type: mapWaterRecord?[index][WaterRecord.waterType],
         value: mapWaterRecord?[index][WaterRecord.waterValue],
+        date: mapWaterRecord?[index][WaterRecord.waterDate],
         timeStamp: mapWaterRecord?[index][WaterRecord.waterTimestamp],
         note: mapWaterRecord?[index][WaterRecord.waterNote],
       ),
