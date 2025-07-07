@@ -30,6 +30,7 @@ class WaterDbHelper {
         WaterRecord.waterType,
         WaterRecord.waterValue,
         WaterRecord.waterDate,
+        WaterRecord.waterTime,
         WaterRecord.waterTimestamp,
         WaterRecord.waterNote,
       ],
@@ -43,14 +44,18 @@ class WaterDbHelper {
     final db = await database;
     await db.delete(
       water_table_name,
-      where: '${WaterRecord.waterDate} = ? AND ${WaterRecord.waterTimestamp} = ?',
+      where:
+          '${WaterRecord.waterDate} = ? AND ${WaterRecord.waterTimestamp} = ?',
       whereArgs: [date, waterTimestamp],
     );
   }
 
   Future<List<WaterRecord>> getAllWaterRecords() async {
     final db = await database;
-    final List<Map<String, dynamic>> maps = await db.query(water_table_name);
+    final List<Map<String, dynamic>> maps = await db.query(
+      water_table_name,
+      orderBy: 'timeStamp DESC',
+    );
     return _waterRecordsToList(maps);
   }
 
@@ -63,6 +68,7 @@ class WaterDbHelper {
         type: mapWaterRecord?[index][WaterRecord.waterType],
         value: mapWaterRecord?[index][WaterRecord.waterValue],
         date: mapWaterRecord?[index][WaterRecord.waterDate],
+        time: mapWaterRecord?[index][WaterRecord.waterTime],
         timeStamp: mapWaterRecord?[index][WaterRecord.waterTimestamp],
         note: mapWaterRecord?[index][WaterRecord.waterNote],
       ),

@@ -7,6 +7,7 @@ import 'package:gulu_water/feature/home/widget/water_today_progress.dart';
 import 'package:gulu_water/feature/home/widget/water_week_line_chart.dart';
 
 import '../../core/provider/target_water_provider.dart';
+import '../../core/routes/routes.dart';
 import '../../core/theme/gu_direct.dart';
 import '../../model/water_record.dart';
 
@@ -63,7 +64,11 @@ class _HomePageState extends ConsumerState<HomePage> {
             style: TextStyle(fontSize: GuDirect.fontSize20),
           ),
         ),
-        Container(child: waterTodayProgress(context, toDayTotalWaterML)),
+        Container(
+          child: toDayTotalWaterML == 0
+              ? _buildTodayNoWater(context, null)
+              : waterTodayProgress(context, toDayTotalWaterML),
+        ),
         Container(
           width: double.infinity,
           margin: const EdgeInsets.symmetric(
@@ -80,7 +85,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           flex: 1,
           child: WaterWeekLineChart(
             data: [
-              FlSpot(0, 10),
+              FlSpot(0, 0),
               FlSpot(1, _weekWaterRecords.isEmpty ? 0 : _weekWaterRecords[0]),
               FlSpot(2, _weekWaterRecords.isEmpty ? 0 : _weekWaterRecords[1]),
               FlSpot(3, _weekWaterRecords.isEmpty ? 0 : _weekWaterRecords[2]),
@@ -94,6 +99,25 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildTodayNoWater(BuildContext context, Widget? child) {
+    return CircleAvatar(
+      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      radius: MediaQuery.of(context).size.width / 4,
+      child: TextButton(
+        onPressed: () {
+          _navigateAddRecordPage(context);
+        },
+        child: Text(
+          '開始紀錄',
+          style: TextStyle(
+            fontSize: GuDirect.fontSize28,
+            color: GuDirect.textWhite,
+          ),
+        ),
+      ),
     );
   }
 
@@ -116,5 +140,9 @@ class _HomePageState extends ConsumerState<HomePage> {
     }
 
     return dateList;
+  }
+
+  void _navigateAddRecordPage(BuildContext context) {
+    Navigator.pushNamed(context, '/${GuRoutes.ADD_RECORD_PAGE}');
   }
 }

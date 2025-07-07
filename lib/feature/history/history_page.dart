@@ -22,7 +22,6 @@ class _HistoryPageState extends ConsumerState<HistoryPage> {
 
   @override
   void initState() {
-    print('history init');
     super.initState();
   }
 
@@ -40,13 +39,11 @@ class _HistoryPageState extends ConsumerState<HistoryPage> {
   }
 
   Widget _buildUI(BuildContext context) {
-    return Expanded(
-      child: Container(
+    return Container(
         width: MediaQuery.sizeOf(context).width,
         height: MediaQuery.sizeOf(context).height,
         child: _allWaterRecordList(context),
-      ),
-    );
+      );
   }
 
   Widget _allWaterRecordList(BuildContext context) {
@@ -66,22 +63,41 @@ class _HistoryPageState extends ConsumerState<HistoryPage> {
             style: TextStyle(fontSize: GuDirect.fontSize24),
           ),
         ),
-        Expanded(
-          child: SafeArea(
-            child: ListView.builder(
-              controller: _allWaterRecordListScrollController,
-              itemCount: newRecordList.length,
-              itemBuilder: (context, index) {
-                final entry = newRecordList.entries.elementAt(index);
-                return ItemHistoryTitle(
-                  header: entry.key,
-                  records: entry.value,
-                );
-              },
+        if (_waterRecords.isEmpty)
+          _buildNoData()
+        else
+          Expanded(
+            child: SafeArea(
+              child: ListView.builder(
+                controller: _allWaterRecordListScrollController,
+                itemCount: newRecordList.length,
+                itemBuilder: (context, index) {
+                  final entry = newRecordList.entries.elementAt(index);
+                  return ItemHistoryTitle(
+                    header: entry.key,
+                    records: entry.value,
+                  );
+                },
+              ),
             ),
           ),
-        ),
       ],
+    );
+  }
+
+  Widget _buildNoData() {
+    return Expanded(
+      flex: 1,
+      child: Container(
+        alignment: Alignment.center,
+        child: Text(
+          'No Data',
+          style: TextStyle(
+            fontSize: GuDirect.fontSize24,
+            color: GuDirect.textGray,
+          ),
+        ),
+      ),
     );
   }
 

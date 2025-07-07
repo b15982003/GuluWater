@@ -85,7 +85,7 @@ class ItemHistoryTitle extends ConsumerWidget {
               style: TextStyle(fontSize: GuDirect.fontSize18),
             ),
             subtitle: Text(
-              '${waterRecord.date} ${waterRecord.timeStamp}',
+              '${waterRecord.date} ${waterRecord.time}',
               style: TextStyle(fontSize: GuDirect.fontSize16),
             ),
           ),

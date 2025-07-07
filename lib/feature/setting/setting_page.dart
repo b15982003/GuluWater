@@ -41,7 +41,6 @@ class _SettingPageState extends ConsumerState<SettingsPage> {
 
   @override
   void dispose() {
-    _weekWaterDataProvider.dispose();
     super.dispose();
   }
 

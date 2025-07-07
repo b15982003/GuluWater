@@ -28,7 +28,8 @@ class GuDataBase {
           ' ${WaterRecord.waterType} TEXT,'
           ' ${WaterRecord.waterValue} INTEGER,'
           ' ${WaterRecord.waterDate} TEXT,'
-          ' ${WaterRecord.waterTimestamp} TEXT,'
+          ' ${WaterRecord.waterTime} TEXT,'
+          ' ${WaterRecord.waterTimestamp} INTEGER,'
           ' ${WaterRecord.waterNote} TEXT)',
         );
       },

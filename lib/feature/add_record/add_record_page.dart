@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gulu_water/core/provider/water_data_provider.dart';
@@ -7,6 +6,7 @@ import 'package:gulu_water/feature/home/provider/week_water_record_provider.dart
 import 'package:gulu_water/model/water_record.dart';
 
 import '../../core/theme/gu_direct.dart';
+import '../../core/widget/gu_progress.dart';
 
 class AddRecordPage extends ConsumerStatefulWidget {
   const AddRecordPage({super.key});
@@ -24,6 +24,9 @@ class _AddRecordState extends ConsumerState<AddRecordPage> {
   final TextEditingController _timeController = TextEditingController();
   final TextEditingController _valueController = TextEditingController();
   final TextEditingController _remarkController = TextEditingController();
+  DateTime selectedDateTime = DateTime.now();
+
+  int get timeStamp => selectedDateTime.millisecondsSinceEpoch;
   var valueInt = 100;
 
   @override
@@ -41,9 +44,6 @@ class _AddRecordState extends ConsumerState<AddRecordPage> {
     _timeController.dispose();
     _valueController.dispose();
     _remarkController.dispose();
-    _waterDataProvider.dispose();
-    _toDayWaterDataProvider.dispose();
-    _weekWaterDataProvider.dispose();
     super.dispose();
   }
 
@@ -228,8 +228,12 @@ class _AddRecordState extends ConsumerState<AddRecordPage> {
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           padding: const EdgeInsets.symmetric(vertical: GuDirect.space8),
         ),
-        onPressed: () {
+        onPressed: () async {
           _saveWaterRecord();
+          final result = await showLoading(context);
+          if (result && context.mounted) {
+            Navigator.pop(context);
+          }
         },
         child: const Text(
           '保存',
@@ -247,13 +251,13 @@ class _AddRecordState extends ConsumerState<AddRecordPage> {
       type: "",
       value: valueInt,
       date: _dateController.text,
-      timeStamp: _timeController.text,
+      time: _timeController.text,
+      timeStamp: timeStamp,
       note: _remarkController.text,
     );
     _waterDataProvider.addWaterRecord(waterRecord);
     _toDayWaterDataProvider.updateWaterRecord();
     _weekWaterDataProvider.updateWeekWaterRecord();
-    Navigator.pop(context);
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -265,7 +269,16 @@ class _AddRecordState extends ConsumerState<AddRecordPage> {
       lastDate: DateTime(2101),
     );
     if (picked != null) {
-      _dateController.text = '${picked.year}-${picked.month}-${picked.day}';
+      setState(() {
+        selectedDateTime = DateTime(
+          picked.year,
+          picked.month,
+          picked.day,
+          selectedDateTime.hour,
+          selectedDateTime.minute,
+        );
+        _dateController.text = picked.toString().split(" ")[0];
+      });
     } else {
       _dateController.text = oldValue;
     }
@@ -282,7 +295,16 @@ class _AddRecordState extends ConsumerState<AddRecordPage> {
       ),
     );
     if (picked != null) {
-      _timeController.text = '${picked.hour}:${picked.minute}';
+      setState(() {
+        selectedDateTime = DateTime(
+          selectedDateTime.year,
+          selectedDateTime.month,
+          selectedDateTime.day,
+          picked.hour,
+          picked.minute,
+        );
+        _timeController.text = '${picked.hour}:${picked.minute}';
+      });
     } else {
       _timeController.text = oldValue;
     }
