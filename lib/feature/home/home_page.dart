@@ -6,6 +6,7 @@ import 'package:gulu_water/feature/home/provider/week_water_record_provider.dart
 import 'package:gulu_water/feature/home/widget/water_today_progress.dart';
 import 'package:gulu_water/feature/home/widget/water_week_line_chart.dart';
 
+import '../../core/provider/target_water_provider.dart';
 import '../../core/theme/gu_direct.dart';
 import '../../model/water_record.dart';
 
@@ -25,6 +26,7 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   late List<WaterRecord> _toDayWaterRecords;
   late List<double> _weekWaterRecords;
+  late double _targetWater;
 
   @override
   void initState() {
@@ -40,6 +42,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   Widget build(BuildContext context) {
     _toDayWaterRecords = ref.watch(toDayWaterRecordProvider);
     _weekWaterRecords = ref.watch(weekWaterRecordProvider);
+    _targetWater = ref.watch(targetWaterProvider);
 
     var toDayTotalWaterML = _countToDayWaterML();
     return Scaffold(body: _buildUI(context, toDayTotalWaterML));
@@ -78,15 +81,15 @@ class _HomePageState extends ConsumerState<HomePage> {
           child: WaterWeekLineChart(
             data: [
               FlSpot(0, 10),
-              FlSpot(1, _weekWaterRecords[0]),
-              FlSpot(2, _weekWaterRecords[1]),
-              FlSpot(3, _weekWaterRecords[2]),
-              FlSpot(4, _weekWaterRecords[3]),
-              FlSpot(5, _weekWaterRecords[4]),
-              FlSpot(6, _weekWaterRecords[5]),
-              FlSpot(7, _weekWaterRecords[6]),
+              FlSpot(1, _weekWaterRecords.isEmpty ? 0 : _weekWaterRecords[0]),
+              FlSpot(2, _weekWaterRecords.isEmpty ? 0 : _weekWaterRecords[1]),
+              FlSpot(3, _weekWaterRecords.isEmpty ? 0 : _weekWaterRecords[2]),
+              FlSpot(4, _weekWaterRecords.isEmpty ? 0 : _weekWaterRecords[3]),
+              FlSpot(5, _weekWaterRecords.isEmpty ? 0 : _weekWaterRecords[4]),
+              FlSpot(6, _weekWaterRecords.isEmpty ? 0 : _weekWaterRecords[5]),
+              FlSpot(7, _weekWaterRecords.isEmpty ? 0 : _weekWaterRecords[6]),
             ],
-            target: 400.0,
+            target: _targetWater,
             dates: _getDateList(),
           ),
         ),

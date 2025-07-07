@@ -16,6 +16,7 @@ class GuDirect {
 
   static const Color borderGray = Color(0XFFA7A8AA);
   static const Color borderWaterBlue = Color(0XFF3EA4F0);
+  static const Color borderOrange = Color(0XFFFFA500);
 
   // 字型大小
   static const double fontSize8 = 8;

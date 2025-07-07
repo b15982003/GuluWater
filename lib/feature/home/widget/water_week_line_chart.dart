@@ -40,7 +40,7 @@ class WaterWeekLineChart extends StatelessWidget {
       drawHorizontalLine: true,
       getDrawingHorizontalLine: (value) {
         var n = value == target
-            ? FlLine(color: GuDirect.borderWaterBlue, strokeWidth: 1)
+            ? FlLine(color: GuDirect.borderOrange, strokeWidth: 1)
             : defaultGridLine(value);
         return n;
       },
