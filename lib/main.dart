@@ -6,6 +6,7 @@ import 'core/theme/gu_direct.dart';
 import 'di/setup_db_helper.dart';
 import 'feature/main_app.dart';
 import 'feature/add_record/add_record_page.dart';
+import 'feature/privacy/privacy_page.dart';
 
 Future<void> main() async {
   await setupDbHelper();
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/':(context) => MainApp(title: 'Gulu Water'),
           '/${GuRoutes.ADD_RECORD_PAGE}':(context) => AddRecordPage(),
+          '/${GuRoutes.PRIVACY_PAGE}':(context) => PrivacyPage(),
         },
       ),
     );

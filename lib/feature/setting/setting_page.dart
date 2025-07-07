@@ -4,6 +4,7 @@ import 'package:gulu_water/feature/setting/widget/setting_item_content.dart';
 import 'package:gulu_water/feature/setting/widget/setting_item_title.dart';
 
 import '../../core/provider/target_water_provider.dart';
+import '../../core/routes/routes.dart';
 import '../../core/theme/gu_direct.dart';
 import '../home/provider/week_water_record_provider.dart';
 
@@ -145,7 +146,11 @@ class _SettingPageState extends ConsumerState<SettingsPage> {
         children: [
           settingItemTitle(context: context, title: 'App 資訊'),
           SizedBox(height: GuDirect.space12),
-          settingItemContent(context: context, title: '隱私群政策', press: () {}),
+          settingItemContent(
+            context: context,
+            title: '隱私權政策',
+            press: () => _navigateToPrivacyPage(context),
+          ),
           settingItemContent(
             context: context,
             title: '版本',
@@ -156,5 +161,9 @@ class _SettingPageState extends ConsumerState<SettingsPage> {
         ],
       ),
     );
+  }
+
+  void _navigateToPrivacyPage(BuildContext context) {
+    Navigator.pushNamed(context, '/${GuRoutes.PRIVACY_PAGE}');
   }
 }
