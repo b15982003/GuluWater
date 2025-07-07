@@ -16,12 +16,19 @@ class WaterDataProvider extends StateNotifier<List<WaterRecord>> {
   }
 
   Future<void> _setup() async {
+    // TODO 之後改成先抓一個月內
     final waterRecords = await waterDbHelper.getAllWaterRecords();
     state = waterRecords ?? [];
   }
 
   Future<void> addWaterRecord(WaterRecord waterRecord) async {
     waterDbHelper.insertWaterRecord(waterRecord);
+    final waterRecords = await waterDbHelper.getAllWaterRecords();
+    state = waterRecords ?? [];
+  }
+
+  Future<void> deleteWaterRecord(WaterRecord waterRecord) async {
+    waterDbHelper.deleteWaterRecord(waterRecord.date, waterRecord.timeStamp);
     final waterRecords = await waterDbHelper.getAllWaterRecords();
     state = waterRecords ?? [];
   }

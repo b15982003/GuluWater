@@ -1,7 +1,8 @@
 import 'dart:ui';
 
-class GuDirect{
+class GuDirect {
   GuDirect._();
+
   // 顏色
   static const Color waterBlue = Color(0XFF3EA4F0);
 
@@ -42,4 +43,13 @@ class GuDirect{
   static const double iconSize40 = 40;
   static const double iconSize48 = 48;
 
+  // Radius
+  static const double radius4 = 4;
+  static const double radius8 = 8;
+  static const double radius12 = 12;
+  static const double radius16 = 16;
+  static const double radius20 = 20;
+  static const double radius24 = 24;
+  static const double radius28 = 28;
+  static const double radius32 = 32;
 }
