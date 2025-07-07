@@ -8,6 +8,8 @@ class GuDirect {
 
   static const Color textGray = Color(0XFFA7A8AA);
   static const Color textWhite = Color(0XFFFFFFFF);
+  static const Color textBlack = Color(0XFF2C2C2E);
+  static const Color textWaterBlue = Color(0XFF3EA4F0);
 
   static const Color backgroundWhite = Color(0XFFFFFFFF);
   static const Color backgroundWaterBlue = Color(0XFF3EA4F0);
@@ -36,6 +38,9 @@ class GuDirect {
   static const double space16 = 16;
   static const double space20 = 20;
   static const double space24 = 24;
+  static const double space28 = 28;
+  static const double space32 = 32;
+  static const double space36 = 36;
 
   // icon size
   static const double iconSize16 = 16;

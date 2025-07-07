@@ -125,7 +125,7 @@ class _SettingPageState extends ConsumerState<SettingsPage> {
           settingItemContent(
             context: context,
             title: '目標設定',
-            press: () {},
+            press: () => _navigateToTargetSettingPage(context),
             showUnderLine: false,
           ),
         ],
@@ -165,5 +165,9 @@ class _SettingPageState extends ConsumerState<SettingsPage> {
 
   void _navigateToPrivacyPage(BuildContext context) {
     Navigator.pushNamed(context, '/${GuRoutes.PRIVACY_PAGE}');
+  }
+
+  void _navigateToTargetSettingPage(BuildContext context) {
+    Navigator.pushNamed(context, '/${GuRoutes.TARGET_SETTING_PAGE}');
   }
 }

@@ -49,13 +49,21 @@ Widget _btnCancel(BuildContext context) {
   return OutlinedButton(
     onPressed: () => Navigator.pop(context, -1),
     style: ButtonStyle(
+      side: WidgetStateProperty.all(BorderSide(color: GuDirect.borderWaterBlue)),
       shape: WidgetStateProperty.all(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(GuDirect.radius28),
         ),
       ),
     ),
-    child: const Text("取消"),
+    child: Padding(
+      padding: EdgeInsets.symmetric(vertical: GuDirect.space8),
+      child: const Text(
+        "取消",
+        style: TextStyle(fontSize: GuDirect.fontSize20,
+        color: GuDirect.textWaterBlue),
+      ),
+    ),
   );
 }
 
@@ -63,12 +71,21 @@ Widget _btnConfirm(BuildContext context) {
   return FilledButton(
     onPressed: () => Navigator.pop(context, 1),
     style: ButtonStyle(
+      backgroundColor: WidgetStateProperty.all(
+        GuDirect.backgroundWaterBlue,
+      ),
       shape: WidgetStateProperty.all(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(GuDirect.radius28),
         ),
       ),
     ),
-    child: const Text("確認"),
+    child: Padding(
+      padding: EdgeInsets.symmetric(vertical: GuDirect.space8),
+      child: const Text(
+        "儲存",
+        style: TextStyle(fontSize: GuDirect.fontSize20),
+      ),
+    ),
   );
 }
