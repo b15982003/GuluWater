@@ -225,7 +225,7 @@ class _AddRecordState extends ConsumerState<AddRecordPage> {
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: GuDirect.backgroundWaterBlue,
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           padding: const EdgeInsets.symmetric(vertical: GuDirect.space8),
         ),
         onPressed: () {

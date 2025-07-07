@@ -24,7 +24,7 @@ class WaterWeekLineChart extends StatelessWidget {
         child: LineChart(
           LineChartData(
             gridData: _buildFlGridData(),
-            lineBarsData: [_buildLineChartBarData()],
+            lineBarsData: [_buildLineChartBarData(context)],
             borderData: _buildFlBorderData(),
             titlesData: _buildFlTitlesData(),
           ),
@@ -47,7 +47,7 @@ class WaterWeekLineChart extends StatelessWidget {
     );
   }
 
-  LineChartBarData _buildLineChartBarData() {
+  LineChartBarData _buildLineChartBarData(BuildContext context) {
     return LineChartBarData(
       spots: data,
       color: GuDirect.borderWaterBlue,
@@ -57,7 +57,7 @@ class WaterWeekLineChart extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
-          colors: [GuDirect.backgroundLightBlue, GuDirect.backgroundWaterBlue],
+          colors: [GuDirect.backgroundLightBlue, Theme.of(context).colorScheme.inversePrimary],
         ),
       ),
     );

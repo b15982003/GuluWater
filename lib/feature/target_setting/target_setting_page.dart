@@ -99,7 +99,7 @@ class TargetSettingPage extends ConsumerWidget {
         },
         style: ButtonStyle(
           backgroundColor: WidgetStateProperty.all(
-            GuDirect.backgroundWaterBlue,
+            Theme.of(context).colorScheme.inversePrimary,
           ),
           shape: WidgetStateProperty.all(
             RoundedRectangleBorder(

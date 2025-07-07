@@ -49,7 +49,9 @@ Widget _btnCancel(BuildContext context) {
   return OutlinedButton(
     onPressed: () => Navigator.pop(context, -1),
     style: ButtonStyle(
-      side: WidgetStateProperty.all(BorderSide(color: GuDirect.borderWaterBlue)),
+      side: WidgetStateProperty.all(
+        BorderSide(color: Theme.of(context).colorScheme.inversePrimary),
+      ),
       shape: WidgetStateProperty.all(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(GuDirect.radius28),
@@ -58,10 +60,12 @@ Widget _btnCancel(BuildContext context) {
     ),
     child: Padding(
       padding: EdgeInsets.symmetric(vertical: GuDirect.space8),
-      child: const Text(
+      child: Text(
         "取消",
-        style: TextStyle(fontSize: GuDirect.fontSize20,
-        color: GuDirect.textWaterBlue),
+        style: TextStyle(
+          fontSize: GuDirect.fontSize20,
+          color: Theme.of(context).colorScheme.inversePrimary,
+        ),
       ),
     ),
   );
@@ -72,7 +76,7 @@ Widget _btnConfirm(BuildContext context) {
     onPressed: () => Navigator.pop(context, 1),
     style: ButtonStyle(
       backgroundColor: WidgetStateProperty.all(
-        GuDirect.backgroundWaterBlue,
+        Theme.of(context).colorScheme.inversePrimary,
       ),
       shape: WidgetStateProperty.all(
         RoundedRectangleBorder(
@@ -82,10 +86,7 @@ Widget _btnConfirm(BuildContext context) {
     ),
     child: Padding(
       padding: EdgeInsets.symmetric(vertical: GuDirect.space8),
-      child: const Text(
-        "儲存",
-        style: TextStyle(fontSize: GuDirect.fontSize20),
-      ),
+      child: const Text("儲存", style: TextStyle(fontSize: GuDirect.fontSize20)),
     ),
   );
 }

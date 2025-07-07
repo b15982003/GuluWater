@@ -24,4 +24,26 @@ class ShareDataBase {
     }
     return null;
   }
+
+  Future<bool?> saveString(String key, String value) async {
+    try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      bool result = await prefs.setString(key, value);
+      return result;
+    } catch (e) {
+      print(e.toString());
+    }
+    return false;
+  }
+
+  Future<String?> getString(String key) async {
+    try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? result = prefs.getString(key);
+      return result;
+    } catch (e) {
+      print(e.toString());
+    }
+    return null;
+  }
 }

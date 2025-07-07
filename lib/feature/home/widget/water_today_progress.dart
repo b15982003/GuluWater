@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../../core/theme/gu_direct.dart';
@@ -6,7 +7,7 @@ import '../../../core/theme/gu_direct.dart';
 Widget waterTodayProgress(BuildContext context, int toDayTotalWaterML) {
   final percent = toDayTotalWaterML / 8000;
   return CircularPercentIndicator(
-    progressColor: GuDirect.backgroundWaterBlue,
+    progressColor: Theme.of(context).colorScheme.inversePrimary,
     animation: true,
     lineWidth: 26,
     percent: percent,

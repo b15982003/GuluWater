@@ -121,7 +121,9 @@ class _SettingPageState extends ConsumerState<SettingsPage> {
         children: [
           settingItemTitle(context: context, title: '使用者設定'),
           SizedBox(height: GuDirect.space12),
-          settingItemContent(context: context, title: '主題設定', press: () {}),
+          settingItemContent(context: context, title: '主題設定', press: () {
+            _navigateToThemeSettingPage(context);
+          }),
           settingItemContent(
             context: context,
             title: '目標設定',
@@ -169,5 +171,9 @@ class _SettingPageState extends ConsumerState<SettingsPage> {
 
   void _navigateToTargetSettingPage(BuildContext context) {
     Navigator.pushNamed(context, '/${GuRoutes.TARGET_SETTING_PAGE}');
+  }
+
+  void _navigateToThemeSettingPage(BuildContext context) {
+    Navigator.pushNamed(context, '/${GuRoutes.THEME_SETTING_PAGE}');
   }
 }
