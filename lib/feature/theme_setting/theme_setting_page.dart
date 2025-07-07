@@ -65,7 +65,7 @@ class ThemeSettingPage extends ConsumerWidget {
   void _getThemeColorList() {
     _themeColorItems.clear();
     _themeColorItems.addAll(
-      _colorSeedProvider.getThemeColorList(GuDirect.backgroundWaterBlue),
+      _colorSeedProvider.getThemeColorList(),
     );
   }
 }

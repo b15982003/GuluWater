@@ -33,7 +33,7 @@ class ColorSeedProvider extends StateNotifier<Color> {
     state = mapColorByKey(key);
   }
 
-  List<ThemeColor> getThemeColorList(Color state) {
+  List<ThemeColor> getThemeColorList() {
     return [
       ThemeColor(
         colorName: '主題經典深藍',
