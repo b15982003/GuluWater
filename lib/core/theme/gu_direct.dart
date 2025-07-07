@@ -13,8 +13,10 @@ class GuDirect {
   static const Color backgroundWaterBlue = Color(0XFF3EA4F0);
   static const Color backgroundLightBlue = Color(0XFF89CFF0);
   static const Color backgroundLightGray = Color(0X60DCDCDC);
+  static const Color backgroundLightOrange = Color(0X95FFAB91);
 
   static const Color borderGray = Color(0XFFA7A8AA);
+  static const Color borderDarkGray = Color(0XFF9D9D9D);
   static const Color borderWaterBlue = Color(0XFF3EA4F0);
   static const Color borderOrange = Color(0XFFFFA500);
 

@@ -41,6 +41,9 @@ class _AddRecordState extends ConsumerState<AddRecordPage> {
     _timeController.dispose();
     _valueController.dispose();
     _remarkController.dispose();
+    _waterDataProvider.dispose();
+    _toDayWaterDataProvider.dispose();
+    _weekWaterDataProvider.dispose();
     super.dispose();
   }
 

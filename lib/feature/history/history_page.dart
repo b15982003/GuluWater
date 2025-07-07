@@ -27,6 +27,12 @@ class _HistoryPageState extends ConsumerState<HistoryPage> {
   }
 
   @override
+  void dispose() {
+    _allWaterRecordListScrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     _waterRecords = ref.watch(waterDataProvider);
 
