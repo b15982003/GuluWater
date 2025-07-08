@@ -12,6 +12,26 @@ Gulu Water 是一款幫助用戶追蹤每日飲水紀錄的健康管理應用程
 -  支援清除資料與隱私說明
 
 ## 專案架構
+- core/                    # 共用核心模組（主題、路由、Provider 等）
+  - provider/              # Riverpod 狀態管理
+  - routes/                # 路由與頁面路徑定義
+  - theme/                 # 主題樣式與色彩定義
+- data/                    # 本地資料來源層（如 sqflite 或 json）
+- di/                      # 相依性注入（Dependency Injection）
+- feature/                 # 功能模組（依功能分頁） 
+  - add_record/            # 新增紀錄
+  - history/               # 歷史紀錄
+  - home/                  # 首頁
+  - privacy/               # 隱私權條款
+  - setting/               # 一般設定
+  - target_setting/        # 目標設定
+  - theme_setting/         # 主題色設定
+  - main_app.dart          # Scaffold 與底部導覽列
+- widget/                  # 各分頁使用的小元件
+-  model/                  # 資料模型（如 WaterRecord）
+-  service/                # SharedPreferences、資料庫等封裝邏輯
+-  main.dart               # App 入口與路由註冊
+
 ```mermaid
 graph TD
 A(lib)
