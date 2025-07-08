@@ -32,13 +32,23 @@ class ItemHistoryTitle extends ConsumerWidget {
           color: GuDirect.backgroundLightGray,
           padding: const EdgeInsets.symmetric(vertical: GuDirect.space12),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: GuDirect.space16),
-            child: Text(
-              header,
-              style: const TextStyle(fontSize: GuDirect.fontSize20),
+                padding: const EdgeInsets.symmetric(horizontal: GuDirect.space16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+                children:[
+                  Text(
+                    header,
+                    style: const TextStyle(fontSize: GuDirect.fontSize20),
+                  ),
+                  Text(
+                    '${_getTotalWater(records)} ml',
+                    style: const TextStyle(fontSize: GuDirect.fontSize20),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
         ...records.map(
           (record) => _item(
             context,
@@ -93,5 +103,13 @@ class ItemHistoryTitle extends ConsumerWidget {
         if (showUnderLine) const Divider(),
       ],
     );
+  }
+
+  int _getTotalWater(List<WaterRecord> records) {
+    int total = 0;
+    for (var record in records) {
+      total += record.value;
+    }
+    return total;
   }
 }
