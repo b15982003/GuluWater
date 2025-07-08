@@ -12,36 +12,53 @@ Gulu Water 是一款幫助用戶追蹤每日飲水紀錄的健康管理應用程
 -  支援清除資料與隱私說明
 
 ## 專案架構
-<details>
-<summary>📁 點我展開專案結構</summary>
-lib/
-├── core/                      # 共用核心模組（主題、路由、Provider 等）
-│   ├── provider/              # Riverpod 狀態管理
-│   ├── routes/                # 路由與頁面路徑定義
-│   ├── theme/                 # 主題樣式與色彩定義
-│   └── widget/                # 通用的 UI 元件
-│
-├── data/                      # 本地資料來源層（可用來管理 sqflite 或 json 資料）
-│
-├── di/                        # 相依性注入（Dependency Injection）
-│
-├── feature/                   # 功能模組（依功能區分畫面與邏輯）
-│   ├── add_record/            # 新增紀錄功能
-│   ├── history/               # 紀錄歷史查詢與分組畫面
-│   ├── home/                  # 首頁功能
-│   ├── privacy/               # 隱私權條款頁面
-│   ├── setting/               # 一般設定畫面
-│   ├── target_setting/        # 目標設定畫面
-│   ├── theme_setting/         # 主題色設定畫面
-│   └── widget/                # 專屬 feature 的 UI 小元件
-│   └── main_app.dart          # App Scaffold 主頁
-│
-├── model/                     # 資料模型（如 WaterRecord、設定等）
-│
-├── service/                   # 封裝的資料存取與邏輯服務（SharedPreferences、資料庫）
-│
-├── main.dart                  # App 進入點，初始化與註冊路由
-</details>
+```mermaid
+graph TD
+A(lib)
+A1(core)
+A1a(provider)
+A1b(routes)
+A1c(theme)
+A1d(widget)
+A2(data)
+A3(di)
+A4(feature)
+A4a(add_record)
+A4b(history)
+A4c(home)
+A4d(privacy)
+A4e(setting)
+A4f(target_setting)
+A4g(theme_setting)
+A4h(widget_feature)
+A4i(main_app.dart)
+A5(model)
+A6(service)
+A7(main.dart)
+
+A --> A1
+A --> A2
+A --> A3
+A --> A4
+A --> A5
+A --> A6
+A --> A7
+
+A1 --> A1a
+A1 --> A1b
+A1 --> A1c
+A1 --> A1d
+
+A4 --> A4a
+A4 --> A4b
+A4 --> A4c
+A4 --> A4d
+A4 --> A4e
+A4 --> A4f
+A4 --> A4g
+A4 --> A4h
+A4 --> A4i
+```
 
 ## 套件
 - flutter_riverpod: ^2.5.1
