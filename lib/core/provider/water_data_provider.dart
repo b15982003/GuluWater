@@ -28,7 +28,7 @@ class WaterDataProvider extends StateNotifier<List<WaterRecord>> {
   }
 
   Future<void> deleteWaterRecord(WaterRecord waterRecord) async {
-    waterDbHelper.deleteWaterRecord(waterRecord.date, waterRecord.time);
+    waterDbHelper.deleteWaterRecord(waterRecord.timeStamp);
     final waterRecords = await waterDbHelper.getAllWaterRecords();
     state = waterRecords ?? [];
   }

@@ -67,7 +67,11 @@ class _HomePageState extends ConsumerState<HomePage> {
         Container(
           child: toDayTotalWaterML == 0
               ? _buildTodayNoWater(context, null)
-              : waterTodayProgress(context, toDayTotalWaterML),
+              : waterTodayProgress(
+                  context,
+                  _targetWater.toInt(),
+                  toDayTotalWaterML,
+                ),
         ),
         Container(
           width: double.infinity,
@@ -103,13 +107,11 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 
   Widget _buildTodayNoWater(BuildContext context, Widget? child) {
-    return CircleAvatar(
-      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      radius: MediaQuery.of(context).size.width / 4,
-      child: TextButton(
-        onPressed: () {
-          _navigateAddRecordPage(context);
-        },
+    return GestureDetector(
+      onTap: () => _navigateAddRecordPage(context),
+      child: CircleAvatar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        radius: MediaQuery.of(context).size.width / 4,
         child: Text(
           '開始紀錄',
           style: TextStyle(

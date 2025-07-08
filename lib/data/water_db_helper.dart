@@ -40,13 +40,13 @@ class WaterDbHelper {
     return _waterRecordsToList(maps);
   }
 
-  void deleteWaterRecord(String date, String waterTimestamp) async {
+  void deleteWaterRecord(int waterTimestamp) async {
     final db = await database;
     await db.delete(
       water_table_name,
       where:
-          '${WaterRecord.waterDate} = ? AND ${WaterRecord.waterTimestamp} = ?',
-      whereArgs: [date, waterTimestamp],
+          '${WaterRecord.waterTimestamp} = ?',
+      whereArgs: [waterTimestamp],
     );
   }
 

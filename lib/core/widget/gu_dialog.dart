@@ -86,7 +86,7 @@ Widget _btnConfirm(BuildContext context) {
     ),
     child: Padding(
       padding: EdgeInsets.symmetric(vertical: GuDirect.space8),
-      child: const Text("儲存", style: TextStyle(fontSize: GuDirect.fontSize20)),
+      child: const Text("刪除", style: TextStyle(fontSize: GuDirect.fontSize20)),
     ),
   );
 }

@@ -4,8 +4,8 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../../core/theme/gu_direct.dart';
 
-Widget waterTodayProgress(BuildContext context, int toDayTotalWaterML) {
-  final percent = toDayTotalWaterML / 8000;
+Widget waterTodayProgress(BuildContext context,int targetWater, int toDayTotalWaterML) {
+  final percent = toDayTotalWaterML / targetWater;
   return CircularPercentIndicator(
     progressColor: Theme.of(context).colorScheme.inversePrimary,
     animation: true,
@@ -20,7 +20,7 @@ Widget waterTodayProgress(BuildContext context, int toDayTotalWaterML) {
     footer: Padding(
       padding: const EdgeInsets.only(top: GuDirect.space16),
       child: Text(
-        '${toDayTotalWaterML}/${8000}ml',
+        '${toDayTotalWaterML}/${targetWater}ml',
         style: TextStyle(fontSize: GuDirect.fontSize16),
       ),
     ),
