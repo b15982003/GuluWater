@@ -12,6 +12,8 @@ Gulu Water 是一款幫助用戶追蹤每日飲水紀錄的健康管理應用程
 -  支援清除資料與隱私說明
 
 ## 專案架構
+<details>
+<summary>📁 點我展開專案結構</summary>
 lib/
 ├── core/                      # 共用核心模組（主題、路由、Provider 等）
 │   ├── provider/              # Riverpod 狀態管理
@@ -39,37 +41,38 @@ lib/
 ├── service/                   # 封裝的資料存取與邏輯服務（SharedPreferences、資料庫）
 │
 ├── main.dart                  # App 進入點，初始化與註冊路由
+</details>
 
 ## 套件
-flutter_riverpod: ^2.5.1
-google_fonts: ^6.2.1
-dio: ^5.4.3+1
-get_it: ^7.7.0
-skeletonizer: ^2.1.0
-fluttertoast: ^8.2.1
-numberpicker: ^2.1.1
-photo_view: ^0.14.0
-image_picker: ^1.1.2
-shared_preferences: ^2.5.3
-sqflite: ^2.4.2
-path: ^1.9.1
-path_provider: ^2.1.5
-image: ^4.5.4
-collection: ^1.18.0
-cupertino_icons: ^1.0.8
-percent_indicator: ^4.2.5
-fl_chart: ^1.0.0
-flutter_launcher_icons: ^0.13.1
+- flutter_riverpod: ^2.5.1
+- google_fonts: ^6.2.1
+- dio: ^5.4.3+1
+- get_it: ^7.7.0
+- skeletonizer: ^2.1.0
+- fluttertoast: ^8.2.1
+- numberpicker: ^2.1.1
+- photo_view: ^0.14.0
+- image_picker: ^1.1.2
+- shared_preferences: ^2.5.3
+- sqflite: ^2.4.2
+- path: ^1.9.1
+- path_provider: ^2.1.5
+- image: ^4.5.4
+- collection: ^1.18.0
+- cupertino_icons: ^1.0.8
+- percent_indicator: ^4.2.5
+- fl_chart: ^1.0.0
+- flutter_launcher_icons: ^0.13.1
 
 # View
 <div style="display: flex; gap: 10px;">
-  <img src="assets/images/sc_home.png" alt="" width="300"/>
-  <img src="assets/images/sc_history.png" alt="" width="300"/>
-  <img src="assets/images/sc_setting.png" alt="" width="300"/>
+  <img src="assets/images/sc_home.png" alt="" width="200"/>
+  <img src="assets/images/sc_history.png" alt="" width="200"/>
+  <img src="assets/images/sc_setting.png" alt="" width="200"/>
 </div>
 
 <div style="display: flex; gap: 10px;">
-  <img src="assets/images/sc_add.png" alt="" width="300"/>
-  <img src="assets/images/sc_theme.png" alt="" width="300"/>
-  <img src="assets/images/sc_trophy.png" alt="" width="300"/>
+  <img src="assets/images/sc_add.png" alt="" width="200"/>
+  <img src="assets/images/sc_theme.png" alt="" width="200"/>
+  <img src="assets/images/sc_trophy.png" alt="" width="200"/>
 </div>
