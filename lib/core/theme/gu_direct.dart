@@ -83,6 +83,7 @@ class GuDirect {
   static const double iconSize32 = 32;
   static const double iconSize40 = 40;
   static const double iconSize48 = 48;
+  static const double iconSize56 = 56;
 
   // Radius
   static const double radius4 = 4;

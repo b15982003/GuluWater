@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gulu_water/feature/setting/widget/setting_item_content.dart';
 import 'package:gulu_water/feature/setting/widget/setting_item_title.dart';
+import 'package:gulu_water/feature/setting/widget/trophy_info_dialog.dart';
 
 import '../../core/provider/target_water_provider.dart';
 import '../../core/routes/routes.dart';
@@ -82,15 +83,30 @@ class _SettingPageState extends ConsumerState<SettingsPage> {
   }
 
   Widget _trophyCard(BuildContext context, String imgTrophy) {
-    return Container(
-      margin: EdgeInsets.only(top: GuDirect.space20),
-      decoration: BoxDecoration(
-        color: GuDirect.backgroundLightOrange,
-        borderRadius: BorderRadius.circular(GuDirect.radius16),
-      ),
-      width: MediaQuery.sizeOf(context).width,
-      height: MediaQuery.sizeOf(context).height / 5,
-      child: Image.asset(imgTrophy),
+    return Stack(
+      children: [
+        Container(
+          margin: EdgeInsets.only(top: GuDirect.space20),
+          decoration: BoxDecoration(
+            color: GuDirect.backgroundLightOrange,
+            borderRadius: BorderRadius.circular(GuDirect.radius16),
+          ),
+          width: MediaQuery.sizeOf(context).width,
+          height: MediaQuery.sizeOf(context).height / 5,
+          child: Image.asset(imgTrophy),
+        ),
+        Positioned(
+          bottom: GuDirect.space8,
+          right: GuDirect.space8,
+          child: Container(
+            child: IconButton(
+              onPressed: () =>
+                  trophyInfoDialog(context: context, imgTrophy: _imgTrophy),
+              icon: Icon(Icons.info_outline, size: GuDirect.iconSize20),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -120,9 +136,13 @@ class _SettingPageState extends ConsumerState<SettingsPage> {
         children: [
           settingItemTitle(context: context, title: '使用者設定'),
           SizedBox(height: GuDirect.space12),
-          settingItemContent(context: context, title: '主題設定', press: () {
-            _navigateToThemeSettingPage(context);
-          }),
+          settingItemContent(
+            context: context,
+            title: '主題設定',
+            press: () {
+              _navigateToThemeSettingPage(context);
+            },
+          ),
           settingItemContent(
             context: context,
             title: '目標設定',
