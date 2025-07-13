@@ -6,6 +6,7 @@ import 'package:gulu_water/feature/home/provider/week_water_record_provider.dart
 import 'package:gulu_water/model/water_record.dart';
 
 import '../../core/theme/gu_direct.dart';
+import '../../core/widget/gu_dialog.dart';
 import '../../core/widget/gu_progress.dart';
 
 class AddRecordPage extends ConsumerStatefulWidget {
@@ -62,16 +63,28 @@ class _AddRecordState extends ConsumerState<AddRecordPage> {
           vertical: GuDirect.space20,
           horizontal: GuDirect.space20,
         ),
-        child: Column(
-          spacing: GuDirect.space20,
-          children: [
-            Container(child: _dateWidget(context)),
-            Container(child: _timeWidget(context)),
-            Container(child: _valueWidget(context)),
-            Container(child: _remarkWidget(context)),
-            Container(child: _btnSaveWidget(context)),
-            SizedBox(height: GuDirect.space16),
-          ],
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: IntrinsicHeight(
+                  child: Column(
+                    spacing: GuDirect.space20,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Container(child: _dateWidget(context)),
+                      Container(child: _timeWidget(context)),
+                      Container(child: _valueWidget(context)),
+                      Container(child: _remarkWidget(context)),
+                      Container(child: _btnSaveWidget(context)),
+                      const SizedBox(height: GuDirect.space16),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -146,8 +159,8 @@ class _AddRecordState extends ConsumerState<AddRecordPage> {
               final input = int.tryParse(value);
 
               if (input == null) {
-                _valueController.text = '100';
-                valueInt = 100;
+                _valueController.text = '';
+                valueInt = 0;
               } else if (input < 1 || input > 10000) {
                 _valueController.text = '10';
                 valueInt = 10;
@@ -229,6 +242,10 @@ class _AddRecordState extends ConsumerState<AddRecordPage> {
           padding: const EdgeInsets.symmetric(vertical: GuDirect.space8),
         ),
         onPressed: () async {
+          if (valueInt == 0) {
+            _showErrorDialog();
+            return;
+          }
           _saveWaterRecord();
           final result = await showLoading(context);
           if (result && context.mounted) {
@@ -243,6 +260,17 @@ class _AddRecordState extends ConsumerState<AddRecordPage> {
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> _showErrorDialog() async {
+    await guDialog(
+      context: context,
+      title: '錯誤',
+      content: '飲水量不可為零',
+      btnConfirmString: '確定',
+      singleButton: true,
+      barrierDismissible: true,
     );
   }
 

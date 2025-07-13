@@ -5,6 +5,9 @@ Future<int?> guDialog({
   required BuildContext context,
   required String title,
   required String content,
+  required String btnConfirmString,
+  required bool singleButton,
+  bool barrierDismissible = false,
 }) async {
   var dialog = AlertDialog(
     title: title.isEmpty
@@ -26,11 +29,13 @@ Future<int?> guDialog({
         width: double.infinity,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(child: _btnCancel(context)),
-            const SizedBox(width: GuDirect.space16),
-            Expanded(child: _btnConfirm(context)),
-          ],
+          children: singleButton
+              ? [Expanded(child: _btnConfirm(context, btnConfirmString))]
+              : [
+                  Expanded(child: _btnCancel(context)),
+                  const SizedBox(width: GuDirect.space16),
+                  Expanded(child: _btnConfirm(context, btnConfirmString)),
+                ],
         ),
       ),
     ],
@@ -38,7 +43,7 @@ Future<int?> guDialog({
 
   return showDialog<int>(
     context: context,
-    barrierDismissible: false,
+    barrierDismissible: barrierDismissible,
     builder: (BuildContext context) {
       return PopScope(canPop: false, child: dialog);
     },
@@ -71,7 +76,7 @@ Widget _btnCancel(BuildContext context) {
   );
 }
 
-Widget _btnConfirm(BuildContext context) {
+Widget _btnConfirm(BuildContext context, String btnConfirmString) {
   return FilledButton(
     onPressed: () => Navigator.pop(context, 1),
     style: ButtonStyle(
@@ -86,7 +91,10 @@ Widget _btnConfirm(BuildContext context) {
     ),
     child: Padding(
       padding: EdgeInsets.symmetric(vertical: GuDirect.space8),
-      child: const Text("刪除", style: TextStyle(fontSize: GuDirect.fontSize20)),
+      child: Text(
+        btnConfirmString,
+        style: TextStyle(fontSize: GuDirect.fontSize20),
+      ),
     ),
   );
 }

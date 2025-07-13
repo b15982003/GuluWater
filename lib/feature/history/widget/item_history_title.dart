@@ -79,6 +79,8 @@ class ItemHistoryTitle extends ConsumerWidget {
               context: context,
               title: '',
               content: '確定要刪除嗎？',
+              btnConfirmString: '刪除',
+              singleButton: false,
             );
             if (ans == 1) {
               waterDataProvider.deleteWaterRecord(waterRecord);
