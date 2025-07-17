@@ -24,19 +24,30 @@ class HomePage extends ConsumerStatefulWidget {
   ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends ConsumerState<HomePage> {
+class _HomePageState extends ConsumerState<HomePage>
+    with WidgetsBindingObserver {
   late List<WaterRecord> _toDayWaterRecords;
   late List<double> _weekWaterRecords;
+  late WeekWaterDataProvider _weekWaterDataProvider;
   late double _targetWater;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
   void dispose() {
     super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      _weekWaterDataProvider.updateWeekWaterRecord();
+    }
   }
 
   @override
@@ -44,6 +55,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     _toDayWaterRecords = ref.watch(toDayWaterRecordProvider);
     _weekWaterRecords = ref.watch(weekWaterRecordProvider);
     _targetWater = ref.watch(targetWaterProvider);
+    _weekWaterDataProvider = ref.watch(weekWaterRecordProvider.notifier);
 
     var toDayTotalWaterML = _countToDayWaterML();
     return Scaffold(body: _buildUI(context, toDayTotalWaterML));
@@ -68,10 +80,10 @@ class _HomePageState extends ConsumerState<HomePage> {
           child: toDayTotalWaterML == 0
               ? _buildTodayNoWater(context, null)
               : waterTodayProgress(
-                  context,
-                  _targetWater.toInt(),
-                  toDayTotalWaterML,
-                ),
+            context,
+            _targetWater.toInt(),
+            toDayTotalWaterML,
+          ),
         ),
         Container(
           width: double.infinity,
@@ -110,8 +122,14 @@ class _HomePageState extends ConsumerState<HomePage> {
     return GestureDetector(
       onTap: () => _navigateAddRecordPage(context),
       child: CircleAvatar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        radius: MediaQuery.of(context).size.width / 4,
+        backgroundColor: Theme
+            .of(context)
+            .colorScheme
+            .inversePrimary,
+        radius: MediaQuery
+            .of(context)
+            .size
+            .width / 4,
         child: Text(
           '開始紀錄',
           style: TextStyle(
